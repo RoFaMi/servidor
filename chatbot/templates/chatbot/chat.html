@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'chatbot/styles.css' %}">
+    <title>Chatbot</title>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="messages" id="messages">
+            
+        </div>
+        <form id="chat-form">
+            <input type="text" id="user-input" placeholder="Escribe un mensaje..." required>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <script>
+        const socket = new WebSocket('ws://127.0.0.1:8000/ws/notifications/');
+    
+        socket.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            const messageContainer = document.getElementById('messages');
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = `¡Recordatorio! ${data.message} a las ${data.time}`;
+            messageContainer.appendChild(notification);
+            alert(`Recordatorio: ${data.message} a las ${data.time}`);
+        };
+    
+        socket.onclose = function(event) {
+            console.log("WebSocket cerrado:", event);
+        };
+    </script>
+    <script src="{% static 'chatbot/script.js' %}"></script>
+</body>
+
+</html>

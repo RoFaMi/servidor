@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e5ddd5;
+    margin: 0;
+}
+
+.chat-container {
+    width: 400px;
+    height: 600px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.message {
+    margin: 10px 0;
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: #dcf8c6;
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 80%;
+}
+
+.bot-message {
+    align-self: flex-start;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 80%;
+}
+
+form {
+    display: flex;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+}
+
+input {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+button {
+    background-color: #25d366; /* Color similar al de WhatsApp */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #128C7E; /* Color más oscuro al hacer hover */
+}

@@ -1,0 +1,38 @@
+<!-- chatbot/templates/chatbot/chat.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Chatbot</h1>
+    <div id="chat-window">
+        <div id="messages"></div>
+        <input type="text" id="user-input" placeholder="Escribe un mensaje...">
+        <button onclick="sendMessage()">Enviar</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var message = $('#user-input').val();
+            $('#messages').append('<div>Usuario: ' + message + '</div>');
+            $('#user-input').val('');
+
+            $.ajax({
+                url: "/chatbot/send_message/",
+                method: "POST",
+                data: { message: message },
+                success: function(response) {
+                    $('#messages').append('<div>Bot: ' + response.response + '</div>');
+                },
+                error: function(error) {
+                    $('#messages').append('<div>Error: No se pudo enviar el mensaje</div>');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
